@@ -1,55 +1,74 @@
-var container=document.querySelector('.container');
-var value1=document.querySelector('.Input-bar');
-var add1=document.querySelector('.add');
+window.onload = () => {
+    // connect your form here by calling
+    const form1 = document.querySelector("#addForm");
+    // connect your items and sub,it button here by calling
+    let items = document.getElementById("items");
+    let submit = document.getElementById("submit");
 
-class item{
-    constructor(name)
-    {
-        this.create(name);
+    let editItem = null;
+
+    form1.addEventListener("submit", addItem);
+    items.addEventListener("click", removeItem);
+};
+// a function for adding the items after clicking submit button
+function addItem(e) {
+    e.preventDefault();
+
+    if (submit.value != "+") {
+        console.log("Hello");
+
+        editItem.target.parentNode.childNodes[0].data
+            = document.getElementById("item").value;
+        // adding value after clicking submit button
+        submit.value = "+";
+        document.getElementById("item").value = "";
+
+        document.getElementById("lblsuccess").innerHTML
+            = "Text edited successfully";
+
+        document.getElementById("lblsuccess")
+            .style.display = "block";
+
+        setTimeout(function () {
+            document.getElementById("lblsuccess")
+                .style.display = "none";
+        }, 3000);
+
+        return false;
     }
-    create(name)
-    {
-        var li=document.createElement('div');
-        li.classList.add('item');
-        var input=document.createElement('Input-bar');
-        input.type="text";
-        input.disabled=true;
-        input.value1=name;
-        input.classList.add('item_Input-bar');
+    //   adding the new items in the list after submitting
+    let newItem = document.getElementById("item").value;
+    if (newItem.trim() == "" || newItem.trim() == null)
+        return false;
+    else
+        document.getElementById("item").value = "";
 
-        var remove=document.createElement('button');
-        remove.classList.add('remove');
-        remove.innerHTML='<i class="fas fa-trash"></i>';
-        remove.addEventListener('click',()=>this.remove(li));
+    let li = document.createElement("li");
+    li.className = "list-group-item";
 
-        container.appendChild(li);
-        li.appendChild(input);
-        li.appendChild(remove);
+    let deleteButton = document.createElement("button");
 
-    }
+    deleteButton.className =
+        "btn-danger btn btn-sm float-right delete";
 
-    remove(li)
-    {
-        container.removeChild(li);
-    }
+    deleteButton.appendChild(document.createTextNode('Delete'));
+
+    let editButton = document.createElement("button");
+
+    editButton.className =
+        "btn-success btn btn-sm float-right edit";
+
+    editButton.appendChild(document.createTextNode("Edit"));
+
+    li.appendChild(document.createTextNode(newItem));
+    li.appendChild(deleteButton);
+    li.appendChild(editButton);
+
+    items.appendChild(li);
 }
 
-add1.addEventListener('click',check);
-window.addEventListener('keydown',(e)=>{
-    if(e.which==13){
-        check()
-    }
-})
 
-function check()
-{
-    if(value1.value!="")
-    {
-        new item(value1.value);
-        value1.value="";
-    }
-}
-function removeAll()
-{
-    document.querySelector('.container'),innerHTML="";
+
+function toggleButton(ref, btnID) {
+    document.getElementById(btnID).disabled = false;
 }
