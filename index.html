@@ -4,54 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <title>To-Do List</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
-    <script src="main.js"></script>
-    <title>ToDoList</title>
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <!-- To add tasks in the list -->
-    <div class="take-input">
-      <h1 class="head">
-        <span><i class="fas fa-clipboard-list"></i></span> To-Do List
-      </h1>
-      <div class="input">
-        <!-- added form here..for text filling -->
-        <form id="addForm">
-          <div class="row">
-            <div>
-              <input
-                type="text"
-                onkeyup="toggleButton(this, 'submit')"
-                class="form-control"
-                id="item"
-                placeholder="Enter your task"
-              />
-            </div>
-            <!-- added input here for submitting after clicking -->
-            <div>
-              <input type="submit" class="btn btn-dark" id="submit" value="+" />
-            </div>
-          </div>
+    <div class="container">
+      <div class="header">
+        <h1><i class="fas fa-clipboard-list"></i> To-Do List</h1>
+
+        <form id="new-task-form">
+          <input
+            type="text"
+            name="new-task-input"
+            id="new-task-input"
+            placeholder="Enter your today's tasks"
+            autocomplete="off"
+          />
+          <button id="new-task-submit">+</button>
         </form>
       </div>
-      <div class="container">
-        <!--  -->
+      <main>
+        <section class="task-list">
+          <div id="tasks"></div>
+        </section>
+      </main>
+      <div class="button-cont" align="center">
+        <a class="remove-btn" onclick="removeAll()"> Remove all Tasks</a
+        ><br /><br />
+        <p>*Note: Double tap on your task to mark as completed.</p>
       </div>
     </div>
-
-    <!-- To add Remove button to remove all tasks -->
-    <div class="button-cont" align="center">
-      <a class="remove-btn" onclick="removeAll()"> Remove all Tasks</a>
-
-      <h3 class="mt-4">Tasks</h3>
-      <!-- added add form tag to add form input -->
-      <form id="addForm">
-        <ul class="list-group" id="items"></ul>
-      </form>
-    </div>
+    <script src="main.js"></script>
   </body>
 </html>

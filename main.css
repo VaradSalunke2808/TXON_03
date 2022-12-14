@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Fira sans", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  background-color: rgb(250, 234, 234);
+  box-shadow: inset;
+  width: 80vw;
+  border-radius: 20px;
+  box-shadow: 0px 0px 40px rgb(99, 96, 96);
+  margin: auto;
+  padding: 50px;
+}
+
+.header {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  width: 100vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header h1 {
+  cursor: default;
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: auto;
+  margin-bottom: 1rem;
+  color: rgb(32, 8, 84);
+  padding: 10px;
+}
+
+.fa-clipboard-list {
+  color: rgb(32, 8, 84);
+}
+
+#new-task-form {
+  display: flex;
+}
+
+input,
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+#new-task-input {
+  flex: 110%;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+
+#new-task-submit {
+  background-color: rgb(88, 145, 243);
+  cursor: pointer;
+  transition: 0.4s;
+  border-radius: 5px;
+  width: 60px;
+  height: 53px;
+  font-size: 30px;
+}
+
+#new-task-submit:hover {
+  color: #fff;
+  background-color: rgb(32, 8, 84);
+}
+
+#new-task-submit:active {
+  opacity: 0.6;
+}
+
+main {
+  flex: 110%;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.task-list {
+  padding: 1rem;
+}
+
+#tasks .task {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(32, 8, 84);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.task .content {
+  flex: 110%;
+}
+
+.task .content .text {
+  font-family: "Work Sans";
+  font-weight: 500;
+  color: #fff;
+  font-size: 1.125rem;
+  width: 100%;
+  cursor: default;
+}
+.text::selection {
+  background: transparent;
+}
+
+.task .content .text:not(:read-only) {
+  color: rgb(156, 191, 251);
+}
+
+.task .actions {
+  display: flex;
+  margin: 0 -0.5rem;
+}
+.content {
+  display: flex;
+}
+
+.content i {
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.fa-check {
+  color: rgb(74, 185, 74);
+}
+.fa-clock {
+  color: rgb(233, 76, 107);
+}
+
+.actions i {
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #fff;
+  margin-inline: 8px;
+}
+.fa-trash:hover {
+  color: #ff0123;
+  transition: 0.2s;
+}
+.fa-floppy-disk:hover {
+  color: rgb(94, 255, 94);
+  transition: 0.2s;
+}
+.fa-pen-to-square:hover {
+  color: rgb(156, 191, 251);
+  transition: 0.2s;
+}
+
+.task .actions button {
+  cursor: pointer;
+  margin: 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.task .actions .edit {
+  background-image: linear-gradient(to right, #ec4899, #8b5cf6);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.task .actions .delete {
+  color: crimson;
+}
+.button-cont {
+  background: none;
+  outline: none;
+  border: none;
+  color: #e64242;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-top: 35px;
+}
+
+.remove-btn {
+  background-color: #ff0123;
+  font-weight: 500;
+  height: 55px;
+  width: 155px;
+  padding: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  display: inline;
+  transition: all 0.2s ease 0s;
+  font-size: 15px;
+}
+
+.remove-btn:hover {
+  background-color: rgb(32, 8, 84);
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.4s ease 0s;
+}
+
+p {
+  color: rgb(32, 8, 84);
+  font-size: 15px;
+}

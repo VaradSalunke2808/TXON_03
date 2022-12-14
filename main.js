@@ -1,74 +1,104 @@
-window.onload = () => {
-    // connect your form here by calling
-    const form1 = document.querySelector("#addForm");
-    // connect your items and sub,it button here by calling
-    let items = document.getElementById("items");
-    let submit = document.getElementById("submit");
+const form = document.querySelector("#new-task-form");
+const input = document.querySelector("#new-task-input");
+const list_el = document.querySelector("#tasks");
+var flag = true;
+var edit = true;
 
-    let editItem = null;
 
-    form1.addEventListener("submit", addItem);
-    items.addEventListener("click", removeItem);
-};
-// a function for adding the items after clicking submit button
-function addItem(e) {
+form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (submit.value != "+") {
-        console.log("Hello");
-
-        editItem.target.parentNode.childNodes[0].data
-            = document.getElementById("item").value;
-        // adding value after clicking submit button
-        submit.value = "+";
-        document.getElementById("item").value = "";
-
-        document.getElementById("lblsuccess").innerHTML
-            = "Text edited successfully";
-
-        document.getElementById("lblsuccess")
-            .style.display = "block";
-
-        setTimeout(function () {
-            document.getElementById("lblsuccess")
-                .style.display = "none";
-        }, 3000);
-
-        return false;
+    const task = input.value;
+    if (task === "" || task === null) {
+        alert("Please enter a task");
     }
-    //   adding the new items in the list after submitting
-    let newItem = document.getElementById("item").value;
-    if (newItem.trim() == "" || newItem.trim() == null)
-        return false;
-    else
-        document.getElementById("item").value = "";
+    else {
 
-    let li = document.createElement("li");
-    li.className = "list-group-item";
+        const task_el = document.createElement('div');
+        task_el.classList.add('task');
 
-    let deleteButton = document.createElement("button");
+        const task_content_el = document.createElement('div');
+        task_content_el.classList.add('content');
 
-    deleteButton.className =
-        "btn-danger btn btn-sm float-right delete";
+        task_el.appendChild(task_content_el);
+        //Creating an icon
+        const fav_icon = document.createElement('i');
+        fav_icon.setAttribute("class", "fa-regular fa-clock")
+        fav_icon.setAttribute("id", "complete")
+        task_content_el.appendChild(fav_icon);
 
-    deleteButton.appendChild(document.createTextNode('Delete'));
+        const task_input_el = document.createElement('input');
+        task_input_el.classList.add('text');
+        task_input_el.type = 'text';
+        task_input_el.value = task;
+        task_input_el.setAttribute('readonly', 'readonly');
 
-    let editButton = document.createElement("button");
+        task_content_el.appendChild(task_input_el);
 
-    editButton.className =
-        "btn-success btn btn-sm float-right edit";
+        const task_actions_el = document.createElement('div');
+        task_actions_el.classList.add('actions');
 
-    editButton.appendChild(document.createTextNode("Edit"));
-
-    li.appendChild(document.createTextNode(newItem));
-    li.appendChild(deleteButton);
-    li.appendChild(editButton);
-
-    items.appendChild(li);
-}
+        const task_edit_el = document.createElement('i');
+        task_edit_el.setAttribute("class", "fa-solid fa-pen-to-square")
 
 
+        const task_delete_el = document.createElement('i');
+        task_delete_el.setAttribute("class", "fa-solid fa-trash");
 
-function toggleButton(ref, btnID) {
-    document.getElementById(btnID).disabled = false;
+
+        task_actions_el.appendChild(task_edit_el);
+        task_actions_el.appendChild(task_delete_el);
+
+        task_el.appendChild(task_actions_el);
+
+        list_el.appendChild(task_el);
+
+        input.value = '';
+
+        task_edit_el.addEventListener('click', (e) => {
+            if (edit) {
+                task_edit_el.removeAttribute("class");
+                task_edit_el.setAttribute("class", "fa-solid fa-floppy-disk");
+                task_input_el.removeAttribute("readonly");
+                task_input_el.focus();
+                edit = false;
+            } else {
+
+                task_input_el.setAttribute("readonly", "readonly");
+                task_edit_el.removeAttribute("class");
+                task_edit_el.setAttribute("class", "fa-solid fa-pen-to-square")
+                edit = true;
+            }
+        });
+
+        task_delete_el.addEventListener('click', (e) => {
+            list_el.removeChild(task_el);
+        });
+
+        task_content_el.addEventListener('dblclick', (e) => {
+
+            if (flag) {
+                fav_icon.removeAttribute("class")
+                fav_icon.setAttribute("class", "fa-solid fa-check");
+                flag = false;
+            }
+            else {
+                fav_icon.removeAttribute("class")
+                fav_icon.setAttribute("class", "fa-regular fa-clock");
+                flag = true;
+            }
+        });
+    }
+
+});
+//Remove all Tasks
+function removeAll() {
+    const task_list = document.querySelectorAll('.task');
+    if (task_list === null || task_list.length === 0) {
+        alert("No tasks found!");
+    }
+    else {
+        if (confirm("Do you want to delete all your tasks?"))
+            list_el.innerHTML = "";
+    }
 }
